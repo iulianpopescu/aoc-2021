@@ -4,13 +4,7 @@ import readInput
 
 fun main() {
     fun part1(input: List<Int>): Int {
-        var count = 0
-        input.forEachIndexed { index, i ->
-            if (index > 0 && i > input[index-1]) {
-                count++
-            }
-        }
-        return count
+        return input.windowed(2).count { (a, b) -> a < b }
     }
 
     fun part2(input: List<Int>): Int {

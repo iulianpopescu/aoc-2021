@@ -2,27 +2,20 @@ package day01
 
 import readInput
 
-fun main() {
-    fun part1(input: List<Int>): Int {
-        return input.windowed(2).count { (a, b) -> a < b }
-    }
+private const val DAY = "day01"
 
-    fun part2(input: List<Int>): Int {
-        val summedInput = mutableListOf<Int>()
-        for (i in 2 until input.size) {
-            summedInput.add(
-                input[i] + input[i - 1] + input[i - 2]
-            )
-        }
-        return part1(summedInput)
-    }
+fun main() {
+
+    fun part1(input: List<Int>) = input.windowed(2).count { (a, b) -> a < b }
+
+    fun part2(input: List<Int>) = input.windowed(4).count { it[0] < it[3] }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("day01/Day01_test")
+    val testInput = readInput("$DAY/ExampleTest")
     check(part1(testInput.map { it.toInt() }) == 7)
     check(part2(testInput.map { it.toInt() }) == 5)
 
-    val input = readInput("day01/Day01")
+    val input = readInput("$DAY/Test")
     println(part1(input.map { it.toInt() }))
     println(part2(input.map { it.toInt() }))
 }

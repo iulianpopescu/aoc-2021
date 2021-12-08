@@ -12,10 +12,12 @@ fun main() {
 
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("$DAY/ExampleTest")
-    check(part1(testInput.map { it.toInt() }) == 7)
-    check(part2(testInput.map { it.toInt() }) == 5)
+    check(part1(testInput.formatted()) == 7)
+    check(part2(testInput.formatted()) == 5)
 
     val input = readInput("$DAY/Test")
-    println(part1(input.map { it.toInt() }))
-    println(part2(input.map { it.toInt() }))
+    println(part1(input.formatted()))
+    println(part2(input.formatted()))
 }
+
+private fun List<String>.formatted() = this.map { it.toInt() }

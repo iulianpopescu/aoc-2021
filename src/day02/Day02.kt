@@ -3,19 +3,20 @@ package day02
 import readInput
 import kotlin.math.max
 
+private const val DAY = "day02"
+
 fun main() {
     fun part1(input: List<Pair<String, Int>>): Int {
         var depth = 0
         var hPosition = 0
 
         input.forEach {
-            when(it.first) {
+            when (it.first) {
                 "up" -> depth = max(depth - it.second, 0)
                 "down" -> depth += it.second
                 "forward" -> hPosition += it.second
             }
         }
-
         return depth * hPosition
     }
 
@@ -34,24 +35,20 @@ fun main() {
                 }
             }
         }
-
         return depth * hPosition
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("day02/Day02_test")
-    val input = testInput.map {
-        val (action, value) = it.split(" ")
-        Pair(action, value.toInt())
-    }
-    check(part1(input) == 150)
-    check(part2(input) == 900)
+    val testInput = readInput("$DAY/ExampleTest")
+    check(part1(testInput.formatted()) == 150)
+    check(part2(testInput.formatted()) == 900)
 
-    val realInput = readInput("day02/Day02")
-    val iinn = realInput.map {
-        val (action, value) = it.split(" ")
-        Pair(action, value.toInt())
-    }
-    println(part1(iinn))
-    println(part2(iinn))
+    val input = readInput("$DAY/Test")
+    println(part1(input.formatted()))
+    println(part2(input.formatted()))
+}
+
+private fun List<String>.formatted() = this.map {
+    val (action, value) = it.split(" ")
+    action to value.toInt()
 }
